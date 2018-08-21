@@ -1520,7 +1520,7 @@ class Dropdown(Widget):
     @property
     def is_enabled(self):
         """Returns if the toolbar itself is enabled and therefore interactive."""
-        button = self.browser.element(self.BUTTON_LOCATOR, parent=self)
+        button = self.browser.element(self.BUTTON_LOCATOR, parent=self, force_check_safe=True)
         return 'disabled' not in self.browser.classes(button)
 
     def _verify_enabled(self):
@@ -1529,7 +1529,7 @@ class Dropdown(Widget):
 
     @property
     def is_open(self):
-        return 'open' in self.browser.classes(self)
+        return 'open' in self.browser.classes(self, force_check_safe=True)
 
     def open(self):
         self._verify_enabled()
